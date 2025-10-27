@@ -163,12 +163,29 @@
       .section-slide .subtitle {
         font-size: 1.5rem;
         color: #374151;
+        margin-bottom: 2rem;
       }
 
-      .section-slide .duration {
+      .section-topics {
+        text-align: left;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .section-topics ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .section-topics li {
         font-size: 1.25rem;
-        color: #6b7280;
-        margin-top: 1.5rem;
+        color: #1f2937;
+        padding: 1rem 1.5rem;
+        margin: 0.5rem 0;
+        background: white;
+        border-radius: 0.5rem;
+        border-left: 4px solid #2563eb;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
       /* Content Slide */
@@ -580,122 +597,20 @@
           type: "section",
           title: "Part 1: Our Journey",
           subtitle: "Internship Experience & Transition",
-          duration: "15 minutes",
-        },
-        {
-          type: "content",
-          title: "The Beginning: Expectations vs Reality",
-          icon: "target",
-          points: [
-            {
-              label: "Expected",
-              text: "Small tasks, shadowing seniors, learning from existing code",
-            },
-            {
-              label: "Reality",
-              text: "Full POC ownership - from problem statement to demo",
-            },
-            {
-              label: "Surprise",
-              text: "Freedom to explore, fail, iterate, and present solutions",
-            },
-          ],
-        },
-        {
-          type: "content",
-          title: "Key Learnings: Beyond Code",
-          icon: "lightbulb",
-          points: [
-            {
-              label: "Research",
-              text: "Exploring technologies, comparing approaches, making decisions",
-            },
-            {
-              label: "Problem-Solving",
-              text: "No tutorial for our exact use case - had to figure it out",
-            },
-            {
-              label: "Presentation",
-              text: "Demoing to stakeholders taught us communication matters",
-            },
-            {
-              label: "Iteration",
-              text: "Feedback loops helped us refine our approach constantly",
-            },
-          ],
-        },
-        {
-          type: "content",
-          title: "College → Corporate: The Shift",
-          icon: "users",
-          points: [
-            {
-              label: "Ownership",
-              text: 'From "complete this assignment" to "solve this problem however you think best"',
-            },
-            {
-              label: "Ambiguity",
-              text: "No clear right answer - had to evaluate trade-offs ourselves",
-            },
-            {
-              label: "Collaboration",
-              text: "Constant feedback from mentors shaped our thinking",
-            },
-            {
-              label: "Real Impact",
-              text: "Our POCs could become actual products for real users",
-            },
-          ],
-        },
-        {
-          type: "highlight",
-          title: "Memorable Moments",
-          items: [
-            { emoji: "🚗", text: "Two team trips - bonding beyond code!" },
-            { emoji: "🎯", text: "First successful demo to stakeholders" },
-            { emoji: "💡", text: "Late-night brainstorming breakthroughs" },
-            { emoji: "🎉", text: "Getting the full-time offer together" },
-          ],
-        },
-        {
-          type: "content",
-          title: "What We'd Do Differently",
-          icon: "trending-up",
-          points: [
-            {
-              label: "Ask Earlier",
-              text: "Don't spend 2 days stuck - ask for guidance after 2 hours",
-            },
-            {
-              label: "Document More",
-              text: "Future demos would've been easier with better notes",
-            },
-            {
-              label: "Explore Wider",
-              text: "We could've researched more alternative approaches",
-            },
-            {
-              label: "Demo Often",
-              text: "Should've shown progress weekly, not just at the end",
-            },
+          topics: [
+            "The Beginning: Expectations vs Reality",
+            "Key Learnings: Beyond Code",
+            "College → Corporate: The Shift",
+            "Memorable Moments",
+            "What We'd Do Differently",
           ],
         },
         {
           type: "section",
           title: "Part 2: POC Projects",
           subtitle: "What We Built & What We Learned",
-          duration: "25 minutes",
         },
 
-        {
-          type: "project-intro",
-          projectName: "Receipt Verification System POC",
-          problem:
-            "How can we automatically verify receipt authenticity and compliance without manual review?",
-          solution:
-            "POC demonstrating AI-powered receipt analysis with fraud detection and policy compliance",
-          icon: "file-text",
-        },
         {
           type: "project-overview",
           title: "Receipt Verification POC",
@@ -730,7 +645,7 @@
         },
         {
           type: "outcomes",
-          title: "Receipt Syste",
+          title: "Receipt System: Impact",
           metrics: [
             {
               label: "Processing Time",
@@ -777,15 +692,7 @@
             },
           ],
         },
-        {
-          type: "project-intro",
-          projectName: "Policy Q&A Assistant POC",
-          problem:
-            "How can employees get instant, accurate answers from hundreds of policy documents?",
-          solution:
-            "POC showcasing RAG-based chatbot that understands and answers policy questions",
-          icon: "database",
-        },
+
         {
           type: "project-overview",
           title: "Policy Q&A Assistant POC",
@@ -914,7 +821,19 @@
                         <div class="slide active section-slide">
                             <h1>${slide.title}</h1>
                             <p class="subtitle">${slide.subtitle}</p>
-                            <p class="duration">⏱️ ${slide.duration}</p>
+                            ${
+                              slide.topics
+                                ? `
+                                <div class="section-topics">
+                                    <ul>
+                                        ${slide.topics
+                                          .map((topic) => `<li>${topic}</li>`)
+                                          .join("")}
+                                    </ul>
+                                </div>
+                            `
+                                : ""
+                            }
                         </div>
                     `;
             break;
