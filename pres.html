@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>From Interns to Full-Time</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+        background: #f3f4f6;
+        overflow: hidden;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      .header {
+        background: white;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .header-left {
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+
+      .header-right {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #2563eb;
+      }
+
+      .slide-content {
+        flex: 1;
+        padding: 2rem;
+        overflow: auto;
+      }
+
+      .slide-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        height: 100%;
+        background: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+      }
+
+      .footer {
+        background: white;
+        box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+        padding: 1rem 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background: #2563eb;
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: background 0.2s;
+      }
+
+      button:hover:not(:disabled) {
+        background: #1d4ed8;
+      }
+
+      button:disabled {
+        background: #d1d5db;
+        cursor: not-allowed;
+      }
+
+      .dots {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border-radius: 9999px;
+        background: #d1d5db;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        padding: 0;
+      }
+
+      .dot.active {
+        width: 2rem;
+        background: #2563eb;
+      }
+
+      .slide {
+        display: none;
+        height: 100%;
+      }
+
+      .slide.active {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Title Slide */
+      .title-slide {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .title-slide h1 {
+        font-size: 3.75rem;
+        font-weight: bold;
+        color: #2563eb;
+        margin-bottom: 1.5rem;
+      }
+
+      .title-slide p {
+        font-size: 1.875rem;
+        color: #6b7280;
+      }
+
+      /* Section Slide */
+      .section-slide {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(to bottom right, #eff6ff, #eef2ff);
+        margin: -2rem;
+        padding: 2rem;
+        border-radius: 0.5rem;
+      }
+
+      .section-slide h1 {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #2563eb;
+        margin-bottom: 1rem;
+      }
+
+      .section-slide .subtitle {
+        font-size: 1.5rem;
+        color: #374151;
+      }
+
+      .section-slide .duration {
+        font-size: 1.25rem;
+        color: #6b7280;
+        margin-top: 1.5rem;
+      }
+
+      /* Content Slide */
+      .content-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .content-header svg {
+        color: #2563eb;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .content-header h2 {
+        font-size: 2.25rem;
+        font-weight: bold;
+        color: #1f2937;
+      }
+
+      .purple-header svg {
+        color: #9333ea !important;
+      }
+
+      .points {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .point {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid #2563eb;
+      }
+
+      .point h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2563eb;
+        margin-bottom: 0.5rem;
+      }
+
+      .point p {
+        font-size: 1.125rem;
+        color: #374151;
+      }
+
+      /* Highlight Slide */
+      .highlight-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        flex: 1;
+      }
+
+      .highlight-item {
+        background: linear-gradient(to bottom right, #eff6ff, #eef2ff);
+        padding: 2rem;
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .highlight-item .emoji {
+        font-size: 3.75rem;
+        margin-bottom: 1rem;
+      }
+
+      .highlight-item p {
+        font-size: 1.25rem;
+        color: #374151;
+        font-weight: 500;
+      }
+
+      /* Project Intro */
+      .project-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .project-header svg {
+        color: #2563eb;
+        width: 3rem;
+        height: 3rem;
+      }
+
+      .project-header h2 {
+        font-size: 2.25rem;
+        font-weight: bold;
+        color: #1f2937;
+      }
+
+      .project-boxes {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .project-box {
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid;
+      }
+
+      .problem-box {
+        background: #fef2f2;
+        border-color: #ef4444;
+      }
+
+      .problem-box h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #dc2626;
+        margin-bottom: 0.75rem;
+      }
+
+      .solution-box {
+        background: #f0fdf4;
+        border-color: #22c55e;
+      }
+
+      .solution-box h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #16a34a;
+        margin-bottom: 0.75rem;
+      }
+
+      .project-box p {
+        font-size: 1.25rem;
+        color: #374151;
+      }
+
+      /* Project Overview */
+      .overview-header h2 {
+        font-size: 2.25rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+      }
+
+      .overview-header p {
+        font-size: 1.25rem;
+        color: #6b7280;
+        margin-bottom: 2rem;
+      }
+
+      .flow-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex: 1;
+      }
+
+      .flow-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+      }
+
+      .flow-icon {
+        background: #dbeafe;
+        padding: 1rem;
+        border-radius: 9999px;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .flow-icon svg {
+        color: #2563eb;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      .flow-item h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 0.5rem;
+      }
+
+      .flow-item p {
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+
+      .flow-arrow {
+        color: #9ca3af;
+        font-size: 1.875rem;
+      }
+
+      /* Outcomes */
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        flex: 1;
+      }
+
+      .metric {
+        background: linear-gradient(to bottom right, #f0fdf4, #d1fae5);
+        padding: 2rem;
+        border-radius: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border: 2px solid #bbf7d0;
+      }
+
+      .metric-value {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #16a34a;
+        margin-bottom: 0.5rem;
+      }
+
+      .metric-label {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1f2937;
+        margin-bottom: 0.25rem;
+      }
+
+      .metric-subtext {
+        font-size: 0.875rem;
+        color: #6b7280;
+      }
+
+      /* Learnings */
+      .learning-point {
+        background: #faf5ff;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        border-left: 4px solid #a855f7;
+      }
+
+      .learning-point h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #9333ea;
+        margin-bottom: 0.5rem;
+      }
+
+      .learning-point p {
+        font-size: 1.125rem;
+        color: #374151;
+      }
+
+      /* Closing */
+      .closing-header h2 {
+        font-size: 2.25rem;
+        font-weight: bold;
+        color: #1f2937;
+        margin-bottom: 1rem;
+      }
+
+      .closing-header p {
+        font-size: 1.5rem;
+        color: #6b7280;
+        margin-bottom: 2rem;
+      }
+
+      .closing-items {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .closing-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: #eff6ff;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+      }
+
+      .closing-item svg {
+        color: #2563eb;
+        flex-shrink: 0;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .closing-item p {
+        font-size: 1.25rem;
+        color: #374151;
+      }
+
+      /* Thank You */
+      .thankyou-slide {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .thankyou-icon {
+        width: 6rem;
+        height: 6rem;
+        color: #2563eb;
+        margin-bottom: 1.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <div class="header">
+        <div class="header-left">
+          Slide <span id="currentSlideNum">1</span> of
+          <span id="totalSlides">19</span>
+        </div>
+        <div class="header-right">Internship to Full-Time Journey</div>
+      </div>
+
+      <!-- Slide Content -->
+      <div class="slide-content">
+        <div class="slide-inner" id="slideContainer">
+          <!-- Slides will be rendered here -->
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="footer">
+        <button id="prevBtn" onclick="prevSlide()">
+          <i data-lucide="chevron-left"></i>
+          Previous
+        </button>
+
+        <div class="dots" id="dotsContainer">
+          <!-- Dots will be generated here -->
+        </div>
+
+        <button id="nextBtn" onclick="nextSlide()">
+          Next
+          <i data-lucide="chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <script>
+      let currentSlide = 0;
+
+      // Icon SVGs
+      const icons = {
+        "chevron-left":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>',
+        "chevron-right":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>',
+        target:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>',
+        lightbulb:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg>',
+        users:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+        "trending-up":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>',
+        "file-text":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>',
+        "file-text-large":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>',
+        search:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>',
+        shield:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
+        "bar-chart-3":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>',
+        "check-circle":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>',
+        "check-circle-large":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>',
+        zap: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
+        database:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>',
+        "database-large":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>',
+        award:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>',
+      };
+
+      function getIcon(name) {
+        return icons[name] || "";
+      }
+
+      const slides = [
+        {
+          type: "title",
+          title: "From Interns to Full-Time",
+          subtitle: "Building POCs, Learning, and Growing Together",
+        },
+        {
+          type: "section",
+          title: "Part 1: Our Journey",
+          subtitle: "Internship Experience & Transition",
+          duration: "15 minutes",
+        },
+        {
+          type: "content",
+          title: "The Beginning: Expectations vs Reality",
+          icon: "target",
+          points: [
+            {
+              label: "Expected",
+              text: "Small tasks, shadowing seniors, learning from existing code",
+            },
+            {
+              label: "Reality",
+              text: "Full POC ownership - from problem statement to demo",
+            },
+            {
+              label: "Surprise",
+              text: "Freedom to explore, fail, iterate, and present solutions",
+            },
+          ],
+        },
+        {
+          type: "content",
+          title: "Key Learnings: Beyond Code",
+          icon: "lightbulb",
+          points: [
+            {
+              label: "Research",
+              text: "Exploring technologies, comparing approaches, making decisions",
+            },
+            {
+              label: "Problem-Solving",
+              text: "No tutorial for our exact use case - had to figure it out",
+            },
+            {
+              label: "Presentation",
+              text: "Demoing to stakeholders taught us communication matters",
+            },
+            {
+              label: "Iteration",
+              text: "Feedback loops helped us refine our approach constantly",
+            },
+          ],
+        },
+        {
+          type: "content",
+          title: "College → Corporate: The Shift",
+          icon: "users",
+          points: [
+            {
+              label: "Ownership",
+              text: 'From "complete this assignment" to "solve this problem however you think best"',
+            },
+            {
+              label: "Ambiguity",
+              text: "No clear right answer - had to evaluate trade-offs ourselves",
+            },
+            {
+              label: "Collaboration",
+              text: "Constant feedback from mentors shaped our thinking",
+            },
+            {
+              label: "Real Impact",
+              text: "Our POCs could become actual products for real users",
+            },
+          ],
+        },
+        {
+          type: "highlight",
+          title: "Memorable Moments",
+          items: [
+            { emoji: "🚗", text: "Two team trips - bonding beyond code!" },
+            { emoji: "🎯", text: "First successful demo to stakeholders" },
+            { emoji: "💡", text: "Late-night brainstorming breakthroughs" },
+            { emoji: "🎉", text: "Getting the full-time offer together" },
+          ],
+        },
+        {
+          type: "content",
+          title: "What We'd Do Differently",
+          icon: "trending-up",
+          points: [
+            {
+              label: "Ask Earlier",
+              text: "Don't spend 2 days stuck - ask for guidance after 2 hours",
+            },
+            {
+              label: "Document More",
+              text: "Future demos would've been easier with better notes",
+            },
+            {
+              label: "Explore Wider",
+              text: "We could've researched more alternative approaches",
+            },
+            {
+              label: "Demo Often",
+              text: "Should've shown progress weekly, not just at the end",
+            },
+          ],
+        },
+        {
+          type: "section",
+          title: "Part 2: POC Projects",
+          subtitle: "What We Built & What We Learned",
+          duration: "25 minutes",
+        },
+
+        {
+          type: "project-intro",
+          projectName: "Receipt Verification System POC",
+          problem:
+            "How can we automatically verify receipt authenticity and compliance without manual review?",
+          solution:
+            "POC demonstrating AI-powered receipt analysis with fraud detection and policy compliance",
+          icon: "file-text",
+        },
+        {
+          type: "project-overview",
+          title: "Receipt Verification POC",
+          subtitle: "High-Level Architecture",
+          components: [
+            {
+              icon: "file-text",
+              name: "Upload",
+              desc: "Image/PDF receipt upload",
+            },
+            {
+              icon: "search",
+              name: "OCR",
+              desc: "Text extraction from images",
+            },
+            {
+              icon: "shield",
+              name: "Fraud Detection",
+              desc: "AI-powered manipulation detection",
+            },
+            {
+              icon: "bar-chart-3",
+              name: "Analysis",
+              desc: "Policy compliance & validation",
+            },
+            {
+              icon: "check-circle",
+              name: "Result",
+              desc: "Approve/Reject with reasons",
+            },
+          ],
+        },
+        {
+          type: "outcomes",
+          title: "Receipt Syste",
+          metrics: [
+            {
+              label: "Processing Time",
+              value: "15 sec",
+              subtext: "per receipt analyzed",
+            },
+            {
+              label: "Detection Types",
+              value: "5+",
+              subtext: "manipulation techniques caught",
+            },
+            {
+              label: "Technologies",
+              value: "6+",
+              subtext: "integrated (OCR, ML, LLM)",
+            },
+            {
+              label: "Demo Success",
+              value: "✓",
+              subtext: "stakeholder validation",
+            },
+          ],
+        },
+        {
+          type: "learnings",
+          title: "Key Learnings: Receipt Project",
+          icon: "zap",
+          points: [
+            {
+              label: "Integration Challenges",
+              text: "Connecting OCR, ML models, and LLMs taught us system design",
+            },
+            {
+              label: "Real-World Data",
+              text: "Handling poor quality images was harder than expected",
+            },
+            {
+              label: "Trade-offs",
+              text: "Balanced accuracy, speed, and complexity for the POC scope",
+            },
+            {
+              label: "User Experience",
+              text: "Async processing makes the system feel much faster",
+            },
+          ],
+        },
+        {
+          type: "project-intro",
+          projectName: "Policy Q&A Assistant POC",
+          problem:
+            "How can employees get instant, accurate answers from hundreds of policy documents?",
+          solution:
+            "POC showcasing RAG-based chatbot that understands and answers policy questions",
+          icon: "database",
+        },
+        {
+          type: "project-overview",
+          title: "Policy Q&A Assistant POC",
+          subtitle: "High-Level Architecture",
+          components: [
+            {
+              icon: "file-text",
+              name: "Ingestion",
+              desc: "Process policy PDFs",
+            },
+            {
+              icon: "database",
+              name: "Vector DB",
+              desc: "Store document embeddings",
+            },
+            {
+              icon: "search",
+              name: "Semantic Search",
+              desc: "Find relevant sections",
+            },
+            {
+              icon: "lightbulb",
+              name: "LLM",
+              desc: "Generate accurate answers",
+            },
+            {
+              icon: "check-circle",
+              name: "Citations",
+              desc: "Show source documents",
+            },
+          ],
+        },
+        {
+          type: "outcomes",
+          title: "Policy Assistant: Business Impact",
+          metrics: [
+            {
+              label: "Response Time",
+              value: "~3 sec",
+              subtext: "average query response",
+            },
+            {
+              label: "Documents",
+              value: "100+",
+              subtext: "policies processed",
+            },
+            {
+              label: "Technologies",
+              value: "4+",
+              subtext: "RAG, Vector DB, LLM",
+            },
+            {
+              label: "Demo Success",
+              value: "✓",
+              subtext: "stakeholder validation",
+            },
+          ],
+        },
+        {
+          type: "learnings",
+          title: "Key Learnings: Policy Assistant POC",
+          icon: "zap",
+          points: [
+            {
+              label: "Integration Challenges",
+              text: "Connecting OCR, ML models, and LLMs taught us system design",
+            },
+            {
+              label: "Real-World Data",
+              text: "Handling poor quality images was harder than expected",
+            },
+            {
+              label: "Trade-offs",
+              text: "Balanced accuracy, speed, and complexity for the POC scope",
+            },
+            {
+              label: "User Experience",
+              text: "Async processing makes the system feel much faster",
+            },
+          ],
+        },
+        {
+          type: "closing",
+          title: "What These POCs Taught Us",
+          subtitle: "Beyond the Technical",
+          points: [
+            "How to research and evaluate technologies independently",
+            "The importance of iterative development and feedback",
+            "Building with the end-user in mind, not just the technology",
+            "Presenting complex technical work to non-technical stakeholders",
+          ],
+        },
+        {
+          type: "closing",
+          title: "Looking Forward",
+          subtitle: "From POCs to Products",
+          points: [
+            "These POCs showed us what's possible - now we build real products",
+            "Continue learning emerging technologies and approaches",
+            "Mentor future interns through their POC journey",
+            "Take on bigger challenges with our newfound confidence",
+          ],
+        },
+        {
+          type: "thankyou",
+          title: "Thank You!",
+          subtitle: "Questions & Discussion",
+        },
+      ];
+
+      function renderSlide(slide) {
+        let html = "";
+
+        switch (slide.type) {
+          case "title":
+            html = `
+                        <div class="slide active title-slide">
+                            <h1>${slide.title}</h1>
+                            <p>${slide.subtitle}</p>
+                        </div>
+                    `;
+            break;
+
+          case "section":
+            html = `
+                        <div class="slide active section-slide">
+                            <h1>${slide.title}</h1>
+                            <p class="subtitle">${slide.subtitle}</p>
+                            <p class="duration">⏱️ ${slide.duration}</p>
+                        </div>
+                    `;
+            break;
+
+          case "content":
+            html = `
+                        <div class="slide active">
+                            <div class="content-header">
+                                ${getIcon(slide.icon)}
+                                <h2>${slide.title}</h2>
+                            </div>
+                            <div class="points">
+                                ${slide.points
+                                  .map(
+                                    (point) => `
+                                    <div class="point">
+                                        <h3>${point.label}</h3>
+                                        <p>${point.text}</p>
+                                    </div>
+                                `
+                                  )
+                                  .join("")}
+                            </div>
+                        </div>
+                    `;
+            break;
+
+          case "highlight":
+            html = `
+                        <div class="slide active">
+                            <h2 style="font-size: 2.25rem; font-weight: bold; color: #1f2937; margin-bottom: 2rem;">${
+                              slide.title
+                            }</h2>
+                            <div class="highlight-grid">
+                                ${slide.items
+                                  .map(
+                                    (item) => `
+                                    <div class="highlight-item">
+                                        <span class="emoji">${item.emoji}</span>
+                                        <p>${item.text}</p>
+                                    </div>
+                                `
+                                  )
+                                  .join("")}
+                            </div>
+                        </div>
+                    `;
+            break;
+
+          case "project-intro":
+            html = `
+                        <div class="slide active" style="justify-content: center;">
+                            <div class="project-header">
+                                ${getIcon(slide.icon + "-large")}
+                                <h2>${slide.projectName}</h2>
+                            </div>
+                            <div class="project-boxes">
+                                <div class="project-box problem-box">
+                                    <h3>❌ The Problem</h3>
+                                    <p>${slide.problem}</p>
+                                </div>
+                                <div class="project-box solution-box">
+                                    <h3>✅ Our Solution</h3>
+                                    <p>${slide.solution}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+            break;
+
+          case "project-overview":
+            html = `
+                        <div class="slide active">
+                            <div class="overview-header">
+                                <h2>${slide.title}</h2>
+                                <p>${slide.subtitle}</p>
+                            </div>
+                            <div class="flow-container">
+                                ${slide.components
+                                  .map(
+                                    (comp, idx) => `
+                                    <div class="flow-item">
+                                        <div class="flow-icon">
+                                            ${getIcon(comp.icon)}
+                                        </div>
+                                        <h3>${comp.name}</h3>
+                                        <p>${comp.desc}</p>
+                                    </div>
+                                    ${
+                                      idx < slide.components.length - 1
+                                        ? '<div class="flow-arrow">→</div>'
+                                        : ""
+                                    }
+                                `
+                                  )
+                                  .join("")}
+                            </div>
+                        </div>
+                    `;
+            break;
+
+          case "outcomes":
+            html = `
+                        <div class="slide active">
+                            <h2 style="font-size: 2.25rem; font-weight: bold; color: #1f2937; margin-bottom: 2rem;">${
+                              slide.title
+                            }</h2>
+                            <div class="metrics-grid">
+                                ${slide.metrics
+                                  .map(
+                                    (metric) => `
+                                    <div class="metric">
+                                        <div class="metric-value">${metric.value}</div>
+                                        <div class="metric-label">${metric.label}</div>
+                                        <div class="metric-subtext">${metric.subtext}</div>
+                                    </div>
+                                `
+                                  )
+                                  .join("")}
+                            </div>
+                        </div>
+                    `;
+            break;
+
+          case "learnings":
+            html = `
+                        <div class="slide active">
+                            <div class="content-header purple-header">
+                                ${getIcon(slide.icon)}
+                                <h2>${slide.title}</h2>
+                            </div>
+                            <div class="points">
+                                ${slide.points
+                                  .map(
+                                    (point) => `
+                                    <div class="learning-point">
+                                        <h3>${point.label}</h3>
+                                        <p>${point.text}</p>
+                                    </div>
+                                `
+                                  )
+                                  .join("")}
+                            </div>
+                        </div>
+                    `;
+            break;
+
+          case "closing":
+            html = `
+                        <div class="slide active" style="justify-content: center;">
+                            <div class="closing-header">
+                                <h2>${slide.title}</h2>
+                                <p>${slide.subtitle}</p>
+                            </div>
+                            <div class="closing-items">
+                                ${slide.points
+                                  .map(
+                                    (point) => `
+                                    <div class="closing-item">
+                                        ${getIcon("check-circle-large")}
+                                        <p>${point}</p>
+                                    </div>
+                                `
+                                  )
+                                  .join("")}
+                            </div>
+                        </div>
+                    `;
+            break;
+
+          case "thankyou":
+            html = `
+                        <div class="slide active thankyou-slide">
+                            ${getIcon("award")}
+                            <h1>${slide.title}</h1>
+                            <p>${slide.subtitle}</p>
+                        </div>
+                    `;
+            break;
+        }
+
+        return html;
+      }
+
+      function updateSlide() {
+        const container = document.getElementById("slideContainer");
+        container.innerHTML = renderSlide(slides[currentSlide]);
+
+        // Update slide counter
+        document.getElementById("currentSlideNum").textContent =
+          currentSlide + 1;
+
+        // Update dots
+        const dots = document.querySelectorAll(".dot");
+        dots.forEach((dot, idx) => {
+          if (idx === currentSlide) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+
+        // Update buttons
+        document.getElementById("prevBtn").disabled = currentSlide === 0;
+        document.getElementById("nextBtn").disabled =
+          currentSlide === slides.length - 1;
+      }
+
+      function nextSlide() {
+        if (currentSlide < slides.length - 1) {
+          currentSlide++;
+          updateSlide();
+        }
+      }
+
+      function prevSlide() {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlide();
+        }
+      }
+
+      function goToSlide(index) {
+        currentSlide = index;
+        updateSlide();
+      }
+
+      // Initialize
+      document.addEventListener("DOMContentLoaded", function () {
+        // Set total slides
+        document.getElementById("totalSlides").textContent = slides.length;
+
+        // Create dots
+        const dotsContainer = document.getElementById("dotsContainer");
+        slides.forEach((_, idx) => {
+          const dot = document.createElement("button");
+          dot.className = "dot";
+          if (idx === 0) dot.classList.add("active");
+          dot.onclick = () => goToSlide(idx);
+          dotsContainer.appendChild(dot);
+        });
+
+        // Render first slide
+        updateSlide();
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight") {
+            nextSlide();
+          } else if (e.key === "ArrowLeft") {
+            prevSlide();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
