@@ -467,7 +467,7 @@
 
       const slides = [
         { type: "title", title: "From Interns to Full-Time", subtitle: "Building POCs, Learning, and Growing Together" },
-        { type: "section", title: "Part 1: Our Journey", subtitle: "Internship Experience & Transition", topics: ["The Beginning: Expectations vs Reality", "Key Learnings: Beyond Code", "College → Corporate: The Shift", "Memorable Moments", "What We'd Do Differently"] },
+        { type: "section", title: "Part 1: Our Journey", subtitle: "Internship Experience & Transition", topics: ["The Beginning: Expectations vs Reality", "Key Learnings: Beyond Code", "College → Corporate: The Shift", "Memorable Moments"] },
         { type: "section", title: "Part 2: POC Projects", subtitle: "What We Built & What We Learned" },
         { type: "project-overview", title: "Receipt Verification POC", subtitle: "High-Level Architecture", components: [
           { icon: "file-text", name: "Upload", desc: "Image/PDF receipt upload" },
@@ -476,18 +476,6 @@
           { icon: "bar-chart-3", name: "Analysis", desc: "Policy compliance & validation" },
           { icon: "check-circle", name: "Result", desc: "Approve/Reject with reasons" }
         ]},
-        { type: "outcomes", title: "Receipt System: Impact", metrics: [
-          { label: "Processing Time", value: "15 sec", subtext: "per receipt analyzed" },
-          { label: "Detection Types", value: "5+", subtext: "manipulation techniques caught" },
-          { label: "Technologies", value: "6+", subtext: "integrated (OCR, ML, LLM)" },
-          { label: "Demo Success", value: "✓", subtext: "stakeholder validation" }
-        ]},
-        { type: "learnings", title: "Key Learnings: Receipt Project", icon: "zap", points: [
-          { label: "Integration Challenges", text: "Connecting OCR, ML models, and LLMs taught us system design" },
-          { label: "Real-World Data", text: "Handling poor quality images was harder than expected" },
-          { label: "Trade-offs", text: "Balanced accuracy, speed, and complexity for the POC scope" },
-          { label: "User Experience", text: "Async processing makes the system feel much faster" }
-        ]},
         { type: "project-overview", title: "Policy Q&A Assistant POC", subtitle: "High-Level Architecture", components: [
           { icon: "file-text", name: "Ingestion", desc: "Process policy PDFs" },
           { icon: "database", name: "Vector DB", desc: "Store document embeddings" },
@@ -495,28 +483,9 @@
           { icon: "lightbulb", name: "LLM", desc: "Generate accurate answers" },
           { icon: "check-circle", name: "Citations", desc: "Show source documents" }
         ]},
-        { type: "outcomes", title: "Policy Assistant: Business Impact", metrics: [
-          { label: "Response Time", value: "~3 sec", subtext: "average query response" },
-          { label: "Documents", value: "100+", subtext: "policies processed" },
-          { label: "Technologies", value: "4+", subtext: "RAG, Vector DB, LLM" },
-          { label: "Demo Success", value: "✓", subtext: "stakeholder validation" }
-        ]},
-        { type: "learnings", title: "Key Learnings: Policy Assistant POC", icon: "zap", points: [
-          { label: "RAG Architecture", text: "Understanding chunking, embeddings, and retrieval strategies" },
-          { label: "Prompt Engineering", text: "Crafting prompts to generate accurate, cited responses" },
-          { label: "Performance Tuning", text: "Optimizing vector search and reducing response latency" },
-          { label: "User Trust", text: "Citations and source transparency build user confidence" }
-        ]},
-        { type: "closing", title: "What These POCs Taught Us", subtitle: "Beyond the Technical", points: [
-          "How to research and evaluate technologies independently",
-          "The importance of iterative development and feedback",
-          "Building with the end-user in mind, not just the technology",
-          "Presenting complex technical work to non-technical stakeholders"
-        ]},
         { type: "closing", title: "Looking Forward", subtitle: "From POCs to Products", points: [
           "These POCs showed us what's possible - now we build real products",
           "Continue learning emerging technologies and approaches",
-          "Mentor future interns through their POC journey",
           "Take on bigger challenges with our newfound confidence"
         ]},
         { type: "thankyou", title: "Thank You!", subtitle: "Questions & Discussion" }
