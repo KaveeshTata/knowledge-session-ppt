@@ -12,7 +12,8 @@
       }
 
       body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
         background: #f3f4f6;
         overflow: hidden;
       }
@@ -414,11 +415,16 @@
     <div class="container">
       <div class="header">
         <div class="header-left">
-          Slide <span id="currentSlideNum">1</span> of <span id="totalSlides">12</span>
+          Slide <span id="currentSlideNum">1</span> of
+          <span id="totalSlides">12</span>
         </div>
         <div class="header-right">
           <span class="header-title">Internship to Full-Time Journey</span>
-          <button class="fullscreen-btn" onclick="toggleFullscreen()" title="Toggle fullscreen (F)">
+          <button
+            class="fullscreen-btn"
+            onclick="toggleFullscreen()"
+            title="Toggle fullscreen (F)"
+          >
             <i data-lucide="maximize"></i>
           </button>
         </div>
@@ -445,20 +451,33 @@
       let currentSlide = 0;
 
       const icons = {
-        "chevron-left": '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>',
-        "chevron-right": '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>',
-        maximize: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>',
-        minimize: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path></svg>',
-        "file-text": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>',
-        search: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>',
-        shield: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
-        "bar-chart-3": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>',
-        "check-circle": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>',
-        "check-circle-large": '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>',
+        "chevron-left":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>',
+        "chevron-right":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>',
+        maximize:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>',
+        minimize:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"></path></svg>',
+        "file-text":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>',
+        search:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>',
+        shield:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>',
+        "bar-chart-3":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg>',
+        "check-circle":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>',
+        "check-circle-large":
+          '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>',
         zap: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
-        database: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>',
-        lightbulb: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg>',
-        award: '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>',
+        database:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>',
+        lightbulb:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg>',
+        award:
+          '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>',
       };
 
       function getIcon(name) {
@@ -466,29 +485,107 @@
       }
 
       const slides = [
-        { type: "title", title: "From Interns to Full-Time", subtitle: "Building POCs, Learning, and Growing Together" },
-        { type: "section", title: "Part 1: Our Journey", subtitle: "Internship Experience & Transition", topics: ["The Beginning: Expectations vs Reality", "Key Learnings: Beyond Code", "College → Corporate: The Shift", "Memorable Moments"] },
-        { type: "section", title: "Part 2: POC Projects", subtitle: "What We Built & What We Learned" },
-        { type: "project-overview", title: "Receipt Verification POC", subtitle: "High-Level Architecture", components: [
-          { icon: "file-text", name: "Upload", desc: "Image/PDF receipt upload" },
-          { icon: "search", name: "OCR", desc: "Text extraction from images" },
-          { icon: "shield", name: "Fraud Detection", desc: "AI-powered manipulation detection" },
-          { icon: "bar-chart-3", name: "Analysis", desc: "Policy compliance & validation" },
-          { icon: "check-circle", name: "Result", desc: "Approve/Reject with reasons" }
-        ]},
-        { type: "project-overview", title: "Policy Q&A Assistant POC", subtitle: "High-Level Architecture", components: [
-          { icon: "file-text", name: "Ingestion", desc: "Process policy PDFs" },
-          { icon: "database", name: "Vector DB", desc: "Store document embeddings" },
-          { icon: "search", name: "Semantic Search", desc: "Find relevant sections" },
-          { icon: "lightbulb", name: "LLM", desc: "Generate accurate answers" },
-          { icon: "check-circle", name: "Citations", desc: "Show source documents" }
-        ]},
-        { type: "closing", title: "Looking Forward", subtitle: "From POCs to Products", points: [
-          "These POCs showed us what's possible - now we build real products",
-          "Continue learning emerging technologies and approaches",
-          "Take on bigger challenges with our newfound confidence"
-        ]},
-        { type: "thankyou", title: "Thank You!", subtitle: "Questions & Discussion" }
+        {
+          type: "title",
+          title: "From Interns to Full-Time",
+          subtitle: "Building POCs, Learning, and Growing Together",
+        },
+        {
+          type: "section",
+          title: "Part 1: Our Journey",
+          subtitle: "Internship Experience & Transition",
+          topics: [
+            "The Beginning: Expectations vs Reality",
+            "Key Learnings: Beyond Code",
+            "College → Corporate: The Shift",
+            "Memorable Moments",
+          ],
+        },
+        {
+          type: "section",
+          title: "Part 2: POC Projects",
+          subtitle: "What We Built & What We Learned",
+        },
+        {
+          type: "project-overview",
+          title: "Policy Q&A Assistant POC",
+          subtitle: "High-Level Architecture",
+          components: [
+            {
+              icon: "file-text",
+              name: "Ingestion",
+              desc: "Process policy PDFs",
+            },
+            {
+              icon: "database",
+              name: "Vector DB",
+              desc: "Store document embeddings",
+            },
+            {
+              icon: "search",
+              name: "Semantic Search",
+              desc: "Find relevant sections",
+            },
+            {
+              icon: "lightbulb",
+              name: "LLM",
+              desc: "Generate accurate answers",
+            },
+            {
+              icon: "check-circle",
+              name: "Citations",
+              desc: "Show source documents",
+            },
+          ],
+        },
+        {
+          type: "project-overview",
+          title: "Receipt Verification POC",
+          subtitle: "High-Level Architecture",
+          components: [
+            {
+              icon: "file-text",
+              name: "Upload",
+              desc: "Image/PDF receipt upload",
+            },
+            {
+              icon: "search",
+              name: "OCR",
+              desc: "Text extraction from images",
+            },
+            {
+              icon: "shield",
+              name: "Fraud Detection",
+              desc: "AI-powered manipulation detection",
+            },
+            {
+              icon: "bar-chart-3",
+              name: "Analysis",
+              desc: "Policy compliance & validation",
+            },
+            {
+              icon: "check-circle",
+              name: "Result",
+              desc: "Approve/Reject with reasons",
+            },
+          ],
+        },
+
+        {
+          type: "closing",
+          title: "Looking Forward",
+          subtitle: "From POCs to Products",
+          points: [
+            "These POCs showed us what's possible - now we build real products",
+            "Continue learning emerging technologies and approaches",
+            "Take on bigger challenges with our newfound confidence",
+          ],
+        },
+        {
+          type: "thankyou",
+          title: "Thank You!",
+          subtitle: "Questions & Discussion",
+        },
       ];
 
       function renderSlide(slide) {
@@ -498,41 +595,105 @@
             html = `<div class="slide active title-slide"><h1>${slide.title}</h1><p>${slide.subtitle}</p></div>`;
             break;
           case "section":
-            html = `<div class="slide active section-slide"><h1>${slide.title}</h1><p class="subtitle">${slide.subtitle}</p>${slide.topics ? `<div class="section-topics"><ul>${slide.topics.map(t => `<li>${t}</li>`).join("")}</ul></div>` : ""}</div>`;
+            html = `<div class="slide active section-slide"><h1>${
+              slide.title
+            }</h1><p class="subtitle">${slide.subtitle}</p>${
+              slide.topics
+                ? `<div class="section-topics"><ul>${slide.topics
+                    .map((t) => `<li>${t}</li>`)
+                    .join("")}</ul></div>`
+                : ""
+            }</div>`;
             break;
           case "project-overview":
-            html = `<div class="slide active"><div class="overview-header"><h2>${slide.title}</h2><p>${slide.subtitle}</p></div><div class="flow-container">${slide.components.map((c, i) => `<div class="flow-item"><div class="flow-icon">${getIcon(c.icon)}</div><h3>${c.name}</h3><p>${c.desc}</p></div>${i < slide.components.length - 1 ? '<div class="flow-arrow">→</div>' : ""}`).join("")}</div></div>`;
+            html = `<div class="slide active"><div class="overview-header"><h2>${
+              slide.title
+            }</h2><p>${
+              slide.subtitle
+            }</p></div><div class="flow-container">${slide.components
+              .map(
+                (c, i) =>
+                  `<div class="flow-item"><div class="flow-icon">${getIcon(
+                    c.icon
+                  )}</div><h3>${c.name}</h3><p>${c.desc}</p></div>${
+                    i < slide.components.length - 1
+                      ? '<div class="flow-arrow">→</div>'
+                      : ""
+                  }`
+              )
+              .join("")}</div></div>`;
             break;
           case "outcomes":
-            html = `<div class="slide active"><h2 style="font-size: 2.25rem; font-weight: bold; color: #1f2937; margin-bottom: 2rem;">${slide.title}</h2><div class="metrics-grid">${slide.metrics.map(m => `<div class="metric"><div class="metric-value">${m.value}</div><div class="metric-label">${m.label}</div><div class="metric-subtext">${m.subtext}</div></div>`).join("")}</div></div>`;
+            html = `<div class="slide active"><h2 style="font-size: 2.25rem; font-weight: bold; color: #1f2937; margin-bottom: 2rem;">${
+              slide.title
+            }</h2><div class="metrics-grid">${slide.metrics
+              .map(
+                (m) =>
+                  `<div class="metric"><div class="metric-value">${m.value}</div><div class="metric-label">${m.label}</div><div class="metric-subtext">${m.subtext}</div></div>`
+              )
+              .join("")}</div></div>`;
             break;
           case "learnings":
-            html = `<div class="slide active"><div class="content-header purple-header">${getIcon(slide.icon)}<h2>${slide.title}</h2></div><div class="points">${slide.points.map(p => `<div class="learning-point"><h3>${p.label}</h3><p>${p.text}</p></div>`).join("")}</div></div>`;
+            html = `<div class="slide active"><div class="content-header purple-header">${getIcon(
+              slide.icon
+            )}<h2>${slide.title}</h2></div><div class="points">${slide.points
+              .map(
+                (p) =>
+                  `<div class="learning-point"><h3>${p.label}</h3><p>${p.text}</p></div>`
+              )
+              .join("")}</div></div>`;
             break;
           case "closing":
-            html = `<div class="slide active" style="justify-content: center;"><div class="closing-header"><h2>${slide.title}</h2><p>${slide.subtitle}</p></div><div class="closing-items">${slide.points.map(p => `<div class="closing-item">${getIcon("check-circle-large")}<p>${p}</p></div>`).join("")}</div></div>`;
+            html = `<div class="slide active" style="justify-content: center;"><div class="closing-header"><h2>${
+              slide.title
+            }</h2><p>${
+              slide.subtitle
+            }</p></div><div class="closing-items">${slide.points
+              .map(
+                (p) =>
+                  `<div class="closing-item">${getIcon(
+                    "check-circle-large"
+                  )}<p>${p}</p></div>`
+              )
+              .join("")}</div></div>`;
             break;
           case "thankyou":
-            html = `<div class="slide active thankyou-slide">${getIcon("award")}<h1>${slide.title}</h1><p>${slide.subtitle}</p></div>`;
+            html = `<div class="slide active thankyou-slide">${getIcon(
+              "award"
+            )}<h1>${slide.title}</h1><p>${slide.subtitle}</p></div>`;
             break;
         }
         return html;
       }
 
       function updateSlide() {
-        document.getElementById("slideContainer").innerHTML = renderSlide(slides[currentSlide]);
-        document.getElementById("currentSlideNum").textContent = currentSlide + 1;
-        document.querySelectorAll(".dot").forEach((dot, idx) => dot.classList.toggle("active", idx === currentSlide));
+        document.getElementById("slideContainer").innerHTML = renderSlide(
+          slides[currentSlide]
+        );
+        document.getElementById("currentSlideNum").textContent =
+          currentSlide + 1;
+        document
+          .querySelectorAll(".dot")
+          .forEach((dot, idx) =>
+            dot.classList.toggle("active", idx === currentSlide)
+          );
         document.getElementById("prevBtn").disabled = currentSlide === 0;
-        document.getElementById("nextBtn").disabled = currentSlide === slides.length - 1;
+        document.getElementById("nextBtn").disabled =
+          currentSlide === slides.length - 1;
       }
 
       function nextSlide() {
-        if (currentSlide < slides.length - 1) { currentSlide++; updateSlide(); }
+        if (currentSlide < slides.length - 1) {
+          currentSlide++;
+          updateSlide();
+        }
       }
 
       function prevSlide() {
-        if (currentSlide > 0) { currentSlide--; updateSlide(); }
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlide();
+        }
       }
 
       function goToSlide(index) {
@@ -543,7 +704,9 @@
       function toggleFullscreen() {
         const container = document.querySelector(".container");
         if (!document.fullscreenElement) {
-          container.requestFullscreen().catch(err => console.error("Fullscreen error:", err));
+          container
+            .requestFullscreen()
+            .catch((err) => console.error("Fullscreen error:", err));
         } else {
           document.exitFullscreen();
         }
@@ -551,7 +714,9 @@
 
       document.addEventListener("fullscreenchange", () => {
         const btn = document.querySelector(".fullscreen-btn i");
-        btn.innerHTML = document.fullscreenElement ? getIcon("minimize") : getIcon("maximize");
+        btn.innerHTML = document.fullscreenElement
+          ? getIcon("minimize")
+          : getIcon("maximize");
       });
 
       document.addEventListener("DOMContentLoaded", function () {
@@ -569,7 +734,8 @@
           if (e.key === "ArrowRight") nextSlide();
           else if (e.key === "ArrowLeft") prevSlide();
           else if (e.key === "f" || e.key === "F") toggleFullscreen();
-          else if (e.key === "Escape" && document.fullscreenElement) document.exitFullscreen();
+          else if (e.key === "Escape" && document.fullscreenElement)
+            document.exitFullscreen();
         });
       });
     </script>
